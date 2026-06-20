@@ -1,0 +1,43 @@
+import { useEffect, useState } from 'react'
+
+export function ProgressBar() {
+  const [progress, setProgress] = useState(0)
+  useEffect(() => {
+    const update = () => {
+      const max = document.documentElement.scrollHeight - innerHeight
+      setProgress(max > 0 ? (scrollY / max) * 100 : 0)
+    }
+    update()
+    addEventListener('scroll', update, { passive: true })
+    return () => removeEventListener('scroll', update)
+  }, [])
+  return <div className="llct-progress" style={{ width: `${progress}%` }} aria-hidden="true" />
+}
+
+const navItems = [['hero', 'Mở đầu'], ['context', 'Bối cảnh'], ['france', 'Chống Pháp'], ['1954-1960', '1954–60'], ['congress', 'Đại hội III'], ['1961-1965', '1961–65'], ['logic', 'Phân tích'], ['lo', 'LO'], ['modern', 'Liên hệ'], ['ai', 'AI Usage'], ['references', 'Nguồn']]
+
+export function StickyNav() {
+  const [active, setActive] = useState('hero')
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => entry.isIntersecting && setActive(entry.target.id)), { rootMargin: '-25% 0px -65%' })
+    navItems.forEach(([id]) => { const node = document.getElementById(id); if (node) observer.observe(node) })
+    return () => observer.disconnect()
+  }, [])
+  return <nav className="llct-nav" aria-label="Điều hướng bài thuyết trình"><a className="llct-brand" href="#hero"><span>02</span> LLCT</a><div className="llct-nav-scroll">{navItems.map(([id, label]) => <a key={id} className={active === id ? 'active' : ''} href={`#${id}`}>{label}</a>)}</div></nav>
+}
+
+export function SectionTitle({ index, eyebrow, title, subtitle }) {
+  return <header className="section-heading reveal"><span className="section-index">{index}</span><div><p className="section-eyebrow">{eyebrow}</p><h2>{title}</h2>{subtitle && <p className="section-subtitle">{subtitle}</p>}</div></header>
+}
+
+export function SpeakerNotes({ notes }) {
+  return <details className="speaker-notes reveal"><summary><span>Gợi ý lời thuyết trình</span><span className="plus">+</span></summary><ul>{notes.map(note => <li key={note}>{note}</li>)}</ul></details>
+}
+
+export function AudiencePrompt({ children }) {
+  return <aside className="audience-prompt reveal"><span>PAUSE & THINK</span><p>{children}</p></aside>
+}
+
+export function PeriodCard({ data, tone = 'north' }) {
+  return <article className={`period-card glass-card reveal ${tone}`}><p className="period-label">{data.label}</p><h3>{data.title}</h3><p className="period-thesis">{data.thesis}</p><ul className="check-list">{data.points.map(point => <li key={point}>{point}</li>)}</ul><div className="analysis-callout"><span>LOGIC LÃNH ĐẠO</span><p>{data.analysis}</p></div></article>
+}
