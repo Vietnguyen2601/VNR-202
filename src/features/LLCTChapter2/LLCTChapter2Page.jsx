@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { aiTools, antiFrench, causeEffectFlow, evidenceQuotes, keyEvents, logic, modern, notes, outcomes, periods, references, timeline, visualAssets } from './data/content'
 import { AudiencePrompt, CauseEffectFlow, EvidenceGallerySection, KeyEventsSection, PeriodCard, ProgressBar, QuoteEvidence, SectionTitle, SpeakerNotes, StickyNav } from './components/PresentationComponents'
+import ChatBox from './components/ChatBox'
 import './LLCTChapter2Page.css'
 
 const Arrow = () => <span className="flow-arrow" aria-hidden="true">→</span>
@@ -15,7 +16,7 @@ export default function LLCTChapter2Page() {
   }, [])
 
   return <main className="llct-page">
-    <ProgressBar /><StickyNav />
+    <ProgressBar /><StickyNav /><ChatBox />
     <section id="hero" className="llct-hero">
       <div className="hero-orbit orbit-one" /><div className="hero-orbit orbit-two" />
       <div className="hero-content reveal">
