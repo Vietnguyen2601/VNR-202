@@ -14,7 +14,7 @@ export function ProgressBar() {
   return <div className="llct-progress" style={{ width: `${progress}%` }} aria-hidden="true" />
 }
 
-const navItems = [['hero', 'Mở đầu'], ['context', 'Bối cảnh'], ['key-events', 'Sự kiện'], ['evidence', 'Tư liệu'], ['france', 'Chống Pháp'], ['1954-1960', '1954–60'], ['congress', 'Đại hội III'], ['1961-1965', '1961–65'], ['logic', 'Phân tích'], ['lo', 'LO'], ['modern', 'Liên hệ'], ['ai', 'AI Usage'], ['references', 'Nguồn']]
+const navItems = [['hero', 'Mở đầu'], ['context', 'Bối cảnh'], ['key-events', 'Sự kiện'], ['evidence', 'Tư liệu'], ['france', 'Chống Pháp'], ['1954-1960', '1954–60'], ['congress', 'Đại hội III'], ['1961-1965', '1961–65'], ['logic', 'Phân tích'], ['lo', 'LO'], ['review-game', 'Ôn tập'], ['modern', 'Liên hệ'], ['ai', 'AI Usage'], ['references', 'Nguồn']]
 
 export function StickyNav() {
   const [active, setActive] = useState('hero')

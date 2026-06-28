@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { aiTools, antiFrench, causeEffectFlow, evidenceQuotes, keyEvents, logic, modern, notes, outcomes, periods, references, timeline, visualAssets } from './data/content'
 import { AudiencePrompt, CauseEffectFlow, EvidenceGallerySection, KeyEventsSection, PeriodCard, ProgressBar, QuoteEvidence, SectionTitle, SpeakerNotes, StickyNav } from './components/PresentationComponents'
+import ReviewGameSection from './components/ReviewGameSection'
 import './LLCTChapter2Page.css'
 
 const Arrow = () => <span className="flow-arrow" aria-hidden="true">→</span>
@@ -85,21 +86,26 @@ export default function LLCTChapter2Page() {
       <div className="lo-grid">{outcomes.map(([code, title, text]) => <article className="lo-card reveal" key={code}><strong>{code}</strong><h3>{title}</h3><p>{text}</p><div className="lo-meter"><i /><i /><i /><i /></div></article>)}</div>
     </section>
 
+    <section id="review-game" className="llct-section review-game-section">
+      <SectionTitle index="10" eyebrow="Mini review game" title="Ôn tập nhanh: 25 câu hỏi vượt mốc lịch sử" subtitle="Trả lời đúng để vượt qua từng câu. Nếu trả lời sai, câu hỏi sẽ quay lại sau để bạn chọn lại." />
+      <ReviewGameSection />
+    </section>
+
     <section id="modern" className="llct-section modern-section">
-      <SectionTitle index="10" eyebrow="Liên hệ hiện nay · LO4" title="Lịch sử không ở lại phía sau" subtitle="Giá trị của bài học nằm ở nguyên tắc tư duy, không phải sao chép máy móc giải pháp của quá khứ." />
+      <SectionTitle index="11" eyebrow="Liên hệ hiện nay · LO4" title="Lịch sử không ở lại phía sau" subtitle="Giá trị của bài học nằm ở nguyên tắc tư duy, không phải sao chép máy móc giải pháp của quá khứ." />
       <div className="modern-grid">{modern.map(([title, text], i) => <article className="modern-card reveal" key={title}><span>{String(i + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
       <AudiencePrompt>Bài học “độc lập, tự chủ, sáng tạo” có ý nghĩa gì trong thời đại AI và chuyển đổi số?</AudiencePrompt>
     </section>
 
     <section id="ai" className="llct-section ai-section">
-      <SectionTitle index="11" eyebrow="AI Usage & Academic Integrity" title="AI hỗ trợ. Sinh viên chịu trách nhiệm." />
+      <SectionTitle index="12" eyebrow="AI Usage & Academic Integrity" title="AI hỗ trợ. Sinh viên chịu trách nhiệm." />
       <div className="commitment reveal"><span>CAM KẾT HỌC THUẬT</span><p>Nhóm cam kết không để AI làm thay hoàn toàn bài thuyết trình. AI chỉ hỗ trợ lên ý tưởng, tổ chức nội dung và tạo cấu trúc web. Nội dung cuối cùng được nhóm kiểm chứng, chỉnh sửa và chịu trách nhiệm.</p></div>
       <div className="ai-tools">{aiTools.map(item => <article className="ai-card reveal" key={item.tool}><header><span>CÔNG CỤ</span><h3>{item.tool}</h3></header><dl><dt>Mục đích</dt><dd>{item.purpose}</dd><dt>Prompt chính</dt><dd>{item.prompt}</dd><dt>AI tạo ra</dt><dd>{item.output}</dd><dt>Nhóm chỉnh sửa</dt><dd>{item.revision}</dd></dl></article>)}</div>
       <div className="boundaries reveal"><span>✓ AI không thay thế việc đọc giáo trình</span><span>✓ Không dùng thông tin chưa kiểm chứng</span><span>✓ Phân biệt rõ AI và phần nhóm biên soạn</span></div>
     </section>
 
     <section id="references" className="llct-section references-section">
-      <SectionTitle index="12" eyebrow="Nguồn & đối chiếu" title="Đặt độ tin cậy lên trước tốc độ" />
+      <SectionTitle index="13" eyebrow="Nguồn & đối chiếu" title="Đặt độ tin cậy lên trước tốc độ" />
       <div className="reference-list">{references.map(([title, note], i) => <article className="reference-item reveal" key={title}><span>[{String(i + 1).padStart(2, '0')}]</span><div><h3>{title}</h3><p>{note}</p></div></article>)}</div>
       <p className="source-warning reveal">Lưu ý: danh mục này cần được nhóm bổ sung số trang giáo trình và đường dẫn văn bản chính thức đã thực tế sử dụng trước khi nộp.</p>
     </section>
