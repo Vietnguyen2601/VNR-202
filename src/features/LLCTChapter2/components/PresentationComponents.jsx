@@ -14,7 +14,7 @@ export function ProgressBar() {
   return <div className="llct-progress" style={{ width: `${progress}%` }} aria-hidden="true" />
 }
 
-const navItems = [['hero', 'Mở đầu'], ['context', 'Bối cảnh'], ['france', 'Chống Pháp'], ['1954-1960', '1954–60'], ['congress', 'Đại hội III'], ['1961-1965', '1961–65'], ['logic', 'Phân tích'], ['lo', 'LO'], ['modern', 'Liên hệ'], ['ai', 'AI Usage'], ['references', 'Nguồn']]
+const navItems = [['hero', 'Mở đầu'], ['context', 'Bối cảnh'], ['key-events', 'Sự kiện'], ['evidence', 'Tư liệu'], ['france', 'Chống Pháp'], ['1954-1960', '1954–60'], ['congress', 'Đại hội III'], ['1961-1965', '1961–65'], ['logic', 'Phân tích'], ['lo', 'LO'], ['modern', 'Liên hệ'], ['ai', 'AI Usage'], ['references', 'Nguồn']]
 
 export function StickyNav() {
   const [active, setActive] = useState('hero')
@@ -40,4 +40,49 @@ export function AudiencePrompt({ children }) {
 
 export function PeriodCard({ data, tone = 'north' }) {
   return <article className={`period-card glass-card reveal ${tone}`}><p className="period-label">{data.label}</p><h3>{data.title}</h3><p className="period-thesis">{data.thesis}</p><ul className="check-list">{data.points.map(point => <li key={point}>{point}</li>)}</ul><div className="analysis-callout"><span>LOGIC LÃNH ĐẠO</span><p>{data.analysis}</p></div></article>
+}
+
+export function KeyEventsSection({ events }) {
+  const filters = ['Tất cả', 'Miền Bắc', 'Miền Nam', 'Cả nước', 'Chủ trương', 'Thắng lợi']
+  const [filter, setFilter] = useState(filters[0])
+  const visibleEvents = filter === 'Tất cả' ? events : events.filter(event => event.region === filter || event.type === filter)
+  return <div className="key-events-shell reveal">
+    <div className="filter-tabs" role="tablist" aria-label="Lọc sự kiện lịch sử">{filters.map(item => <button key={item} className={filter === item ? 'active' : ''} type="button" onClick={() => setFilter(item)}>{item}</button>)}</div>
+    <div className="event-rail">{visibleEvents.map(event => <article className="event-card" key={`${event.date}-${event.title}`}>
+      <div className="event-date">{event.date}</div>
+      <div className="event-body">
+        {event.image && <img className="event-image" src={event.image} alt={event.imageAlt || event.title} />}
+        <div className="event-meta"><span>{event.region}</span><span>{event.type}</span>{event.lo.map(lo => <span key={lo}>{lo}</span>)}</div>
+        <h3>{event.title}</h3>
+        <p>{event.description}</p>
+        <blockquote>{event.evidence}</blockquote>
+        <small>Phân tích: {event.analysis}</small>
+      </div>
+    </article>)}</div>
+  </div>
+}
+
+export function EvidenceGallerySection({ assets }) {
+  return <div className="evidence-gallery">{assets.map(asset => <article className="visual-card reveal" key={asset.id}>
+    <div className="visual-placeholder" aria-label={`Vị trí ảnh tư liệu: ${asset.title}`}><span>{asset.year}</span><b>{asset.title}</b></div>
+    <div className="visual-card-body">
+      <p>{asset.caption}</p>
+      <dl><dt>Vì sao quan trọng</dt><dd>{asset.why}</dd><dt>Nguồn nên dùng</dt><dd>{asset.source}</dd></dl>
+    </div>
+  </article>)}</div>
+}
+
+export function QuoteEvidence({ evidence }) {
+  return <article className="quote-evidence reveal"><span>{evidence.label}</span><blockquote>{evidence.quote}</blockquote><p>{evidence.source}</p><small>Ý nghĩa: {evidence.meaning}</small></article>
+}
+
+export function CauseEffectFlow({ items }) {
+  return <div className="cause-flow">{items.map((item, index) => <article className="cause-row reveal" key={item.cause}>
+    <span className="cause-number">{String(index + 1).padStart(2, '0')}</span>
+    <div><b>Nguyên nhân</b><p>{item.cause}</p></div>
+    <i aria-hidden="true">→</i>
+    <div><b>Quyết sách của Đảng</b><p>{item.decision}</p></div>
+    <i aria-hidden="true">→</i>
+    <div><b>Kết quả lịch sử</b><p>{item.result}</p></div>
+  </article>)}</div>
 }
