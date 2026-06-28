@@ -139,6 +139,13 @@
   font-size: 0.78rem;
 }
 
+.llct-chat-limit {
+  margin: 0;
+  padding: 0 14px 8px;
+  color: #e8bb4f;
+  font-size: 0.78rem;
+}
+
 .llct-chat-suggestions {
   display: flex;
   flex-direction: column;

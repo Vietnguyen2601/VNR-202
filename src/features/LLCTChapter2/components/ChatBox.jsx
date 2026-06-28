@@ -16,15 +16,23 @@ const SUGGESTIONS = [
   'Miền Bắc đã chi viện cho miền Nam như thế nào giai đoạn 1961–1965?',
 ]
 
+const MAX_SESSION_MESSAGES = 15
+const COOLDOWN_MS = 4000
+
 function ChatBox() {
   const [open, setOpen] = useState(false)
   const [input, setInput] = useState('')
   const [messages, setMessages] = useState([WELCOME])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [cooldownSec, setCooldownSec] = useState(0)
   const listRef = useRef(null)
   const inputRef = useRef(null)
-  const hasUserMessage = messages.some(msg => msg.role === 'user')
+  const lastSubmitAtRef = useRef(0)
+  const userMessageCount = messages.filter(msg => msg.role === 'user').length
+  const hasUserMessage = userMessageCount > 0
+  const sessionLimitReached = userMessageCount >= MAX_SESSION_MESSAGES
+  const isBlocked = loading || cooldownSec > 0 || sessionLimitReached
 
   useEffect(() => {
     if (open && listRef.current) {
@@ -38,9 +46,38 @@ function ChatBox() {
     }
   }, [open])
 
+  useEffect(() => {
+    if (cooldownSec <= 0) return undefined
+
+    const timer = window.setInterval(() => {
+      setCooldownSec(prev => (prev <= 1 ? 0 : prev - 1))
+    }, 1000)
+
+    return () => window.clearInterval(timer)
+  }, [cooldownSec])
+
+  function startCooldown(seconds = COOLDOWN_MS / 1000) {
+    setCooldownSec(Math.max(1, Math.ceil(seconds)))
+    lastSubmitAtRef.current = Date.now()
+  }
+
   async function submit(text) {
     const content = text.trim()
-    if (!content || loading) return
+    if (!content || isBlocked) return
+
+    const now = Date.now()
+    const elapsed = now - lastSubmitAtRef.current
+    if (lastSubmitAtRef.current && elapsed < COOLDOWN_MS) {
+      const waitSec = Math.ceil((COOLDOWN_MS - elapsed) / 1000)
+      setError(`Vui lòng đợi ${waitSec} giây trước khi gửi câu hỏi tiếp theo.`)
+      setCooldownSec(waitSec)
+      return
+    }
+
+    if (sessionLimitReached) {
+      setError(`Bạn đã hỏi ${MAX_SESSION_MESSAGES} câu trong phiên này. Vui lòng tải lại trang để tiếp tục.`)
+      return
+    }
 
     setError('')
     setInput('')
@@ -49,6 +86,7 @@ function ChatBox() {
     const nextMessages = [...messages, userMessage]
     setMessages(nextMessages)
     setLoading(true)
+    startCooldown()
 
     try {
       const history = nextMessages.filter(msg => msg !== WELCOME)
@@ -101,11 +139,15 @@ function ChatBox() {
             <div className="llct-chat-suggestions">
               <p className="llct-chat-suggestions-label">Gợi ý câu hỏi</p>
               {SUGGESTIONS.map(suggestion => (
-                <button key={suggestion} type="button" onClick={() => submit(suggestion)} disabled={loading}>
+                <button key={suggestion} type="button" onClick={() => submit(suggestion)} disabled={isBlocked}>
                   {suggestion}
                 </button>
               ))}
             </div>
+          )}
+
+          {sessionLimitReached && (
+            <p className="llct-chat-limit">Bạn đã dùng hết {MAX_SESSION_MESSAGES} lượt hỏi trong phiên này.</p>
           )}
 
           <form className="llct-chat-form" onSubmit={handleSubmit}>
@@ -114,12 +156,18 @@ function ChatBox() {
               type="text"
               value={input}
               onChange={event => setInput(event.target.value)}
-              placeholder="Nhập câu hỏi của bạn..."
-              disabled={loading}
+              placeholder={
+                sessionLimitReached
+                  ? 'Đã hết lượt hỏi trong phiên này'
+                  : cooldownSec > 0
+                    ? `Đợi ${cooldownSec}s để gửi tiếp...`
+                    : 'Nhập câu hỏi của bạn...'
+              }
+              disabled={isBlocked}
               maxLength={500}
             />
-            <button type="submit" disabled={loading || !input.trim()}>
-              Gửi
+            <button type="submit" disabled={isBlocked || !input.trim()}>
+              {loading ? '...' : cooldownSec > 0 ? `${cooldownSec}s` : 'Gửi'}
             </button>
           </form>
         </section>

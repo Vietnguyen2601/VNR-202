@@ -33,11 +33,15 @@ function chatApiDevPlugin(env) {
             process.env.OPENAI_MODEL = env.OPENAI_MODEL || process.env.OPENAI_MODEL
 
             const parsed = body ? JSON.parse(body) : {}
-            const result = await handleChatRequest(parsed)
+            const clientIp = req.socket?.remoteAddress || '127.0.0.1'
+            const result = await handleChatRequest(parsed, { clientIp })
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify(result))
           } catch (error) {
             res.statusCode = error.statusCode || 500
+            if (error.retryAfterSec) {
+              res.setHeader('Retry-After', String(error.retryAfterSec))
+            }
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify({ error: error.message || 'Lỗi server.' }))
           }
