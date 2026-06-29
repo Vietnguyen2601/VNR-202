@@ -1,4 +1,4 @@
-import apBacImage from '../../../assets/images/chienthangapbac.jpg'
+﻿import apBacImage from '../../../assets/images/chienthangapbac.jpg'
 import congressIIIImage from '../../../assets/images/daihoidanglan3.jpg'
 import dongKhoiImage from '../../../assets/images/dongkhoibentre.jpg'
 import liberationCapitalImage from '../../../assets/images/giaiphongthudo.jfif'
@@ -94,12 +94,12 @@ export const visualAssets = [
 ]
 
 export const evidenceQuotes = [
-  { label: 'Dẫn chứng 1', quote: 'Đến năm 1957, cơ bản nông nghiệp miền Bắc đã đạt được năng suất và sản lượng của năm 1939.', source: 'Giáo trình LLCT, phần 2.2.1a', meaning: 'Chứng minh nhiệm vụ khôi phục kinh tế ở miền Bắc đạt kết quả rõ rệt.' },
-  { label: 'Dẫn chứng 2', quote: 'Hơn 9 triệu người trong hơn 2 triệu hộ nông dân lao động được chia hơn 810.000 ha ruộng đất.', source: 'Giáo trình LLCT, phần cải cách ruộng đất', meaning: 'Cho thấy cải cách ruộng đất làm thay đổi căn bản quan hệ sở hữu ruộng đất ở nông thôn miền Bắc.' },
-  { label: 'Dẫn chứng 3', quote: 'Đến cuối năm 1960, có 1.383 xã/2.627 xã nhân dân lập chính quyền tự quản.', source: 'Giáo trình LLCT, phần phong trào Đồng khởi', meaning: 'Cho thấy Đồng khởi không phải sự kiện đơn lẻ mà là phong trào rộng lớn.' },
-  { label: 'Dẫn chứng 4', quote: 'Năm 1965, số bộ đội từ miền Bắc được đưa vào miền Nam tăng 9 lần, số vật chất tăng 10 lần so với năm 1961.', source: 'Giáo trình LLCT, phần miền Bắc chi viện miền Nam', meaning: 'Làm rõ vai trò hậu phương lớn của miền Bắc đối với tiền tuyến miền Nam.' },
-  { label: 'Dẫn chứng 5', quote: 'Từ tháng 11/1963 đến tháng 6/1965 đã diễn ra 10 cuộc đảo chính quân sự trong nội bộ chính quyền Sài Gòn.', source: 'Giáo trình LLCT, phần Chiến tranh đặc biệt', meaning: 'Chứng minh chính quyền Sài Gòn khủng hoảng, một trụ cột của Chiến tranh đặc biệt bị lung lay.' },
-  { label: 'Dẫn chứng 6', quote: 'Chiến lược “Chiến tranh đặc biệt” của đế quốc Mỹ được triển khai đến mức cao nhất đã hoàn toàn bị phá sản.', source: 'Giáo trình LLCT, phần kết quả 1961–1965', meaning: 'Khẳng định ý nghĩa chiến lược của thắng lợi cách mạng miền Nam giai đoạn 1961–1965.' },
+  { label: 'Dẫn chứng 1', quote: 'Đến năm 1957, cơ bản nông nghiệp miền Bắc đã đạt được năng suất và sản lượng của năm 1939.', source: 'Giáo trình VNR-202, phần 2.2.1a', meaning: 'Chứng minh nhiệm vụ khôi phục kinh tế ở miền Bắc đạt kết quả rõ rệt.' },
+  { label: 'Dẫn chứng 2', quote: 'Hơn 9 triệu người trong hơn 2 triệu hộ nông dân lao động được chia hơn 810.000 ha ruộng đất.', source: 'Giáo trình VNR-202, phần cải cách ruộng đất', meaning: 'Cho thấy cải cách ruộng đất làm thay đổi căn bản quan hệ sở hữu ruộng đất ở nông thôn miền Bắc.' },
+  { label: 'Dẫn chứng 3', quote: 'Đến cuối năm 1960, có 1.383 xã/2.627 xã nhân dân lập chính quyền tự quản.', source: 'Giáo trình VNR-202, phần phong trào Đồng khởi', meaning: 'Cho thấy Đồng khởi không phải sự kiện đơn lẻ mà là phong trào rộng lớn.' },
+  { label: 'Dẫn chứng 4', quote: 'Năm 1965, số bộ đội từ miền Bắc được đưa vào miền Nam tăng 9 lần, số vật chất tăng 10 lần so với năm 1961.', source: 'Giáo trình VNR-202, phần miền Bắc chi viện miền Nam', meaning: 'Làm rõ vai trò hậu phương lớn của miền Bắc đối với tiền tuyến miền Nam.' },
+  { label: 'Dẫn chứng 5', quote: 'Từ tháng 11/1963 đến tháng 6/1965 đã diễn ra 10 cuộc đảo chính quân sự trong nội bộ chính quyền Sài Gòn.', source: 'Giáo trình VNR-202, phần Chiến tranh đặc biệt', meaning: 'Chứng minh chính quyền Sài Gòn khủng hoảng, một trụ cột của Chiến tranh đặc biệt bị lung lay.' },
+  { label: 'Dẫn chứng 6', quote: 'Chiến lược “Chiến tranh đặc biệt” của đế quốc Mỹ được triển khai đến mức cao nhất đã hoàn toàn bị phá sản.', source: 'Giáo trình VNR-202, phần kết quả 1961–1965', meaning: 'Khẳng định ý nghĩa chiến lược của thắng lợi cách mạng miền Nam giai đoạn 1961–1965.' },
 ]
 
 export const causeEffectFlow = [
@@ -125,13 +125,14 @@ export const modern = [
 ]
 
 export const aiTools = [
-  { tool: 'ChatGPT', purpose: 'Hỗ trợ cấu trúc nội dung và bố cục thuyết trình.', prompt: 'Sắp xếp đề bài LLCT thành bài thuyết trình có LO, liên hệ hiện nay và AI Usage.', output: 'Bản nháp section và phương án UI.', revision: 'Nhóm chọn lọc, viết lại và đối chiếu giáo trình.' },
-  { tool: 'Codex / AI coding assistant', purpose: 'Chuyển brief do nhóm biên soạn thành giao diện React.', prompt: 'Build an interactive LLCT presentation website based on the provided brief.', output: 'Component, CSS, dữ liệu và hiệu ứng.', revision: 'Nhóm kiểm tra nội dung, bố cục và tính chính xác.' },
+  { tool: 'ChatGPT', purpose: 'Hỗ trợ cấu trúc nội dung và bố cục thuyết trình.', prompt: 'Sắp xếp đề bài VNR-202 thành bài thuyết trình có LO, liên hệ hiện nay và AI Usage.', output: 'Bản nháp section và phương án UI.', revision: 'Nhóm chọn lọc, viết lại và đối chiếu giáo trình.' },
+  { tool: 'Codex / AI coding assistant', purpose: 'Chuyển brief do nhóm biên soạn thành giao diện React.', prompt: 'Build an interactive VNR-202 presentation website based on the provided brief.', output: 'Component, CSS, dữ liệu và hiệu ứng.', revision: 'Nhóm kiểm tra nội dung, bố cục và tính chính xác.' },
 ]
 
 export const references = [
-  ['Giáo trình Lịch sử Đảng Cộng sản Việt Nam / LLCT', 'Nguồn chính kiểm chứng nội dung lịch sử, mốc thời gian và khái niệm.'],
+  ['Giáo trình Lịch sử Đảng Cộng sản Việt Nam / VNR-202', 'Nguồn chính kiểm chứng nội dung lịch sử, mốc thời gian và khái niệm.'],
   ['Văn kiện Đại hội đại biểu toàn quốc lần thứ XIII của Đảng', 'Đối chiếu phần mục tiêu phát triển đất nước hiện nay.'],
   ['Nghị quyết 57-NQ/TW ngày 22/12/2024', 'Liên hệ khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số quốc gia.'],
   ['Văn bản chính thống theo yêu cầu môn học', 'Đối chiếu mọi thông tin có sự hỗ trợ của AI trước khi trình bày.'],
 ]
+

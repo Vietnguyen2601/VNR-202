@@ -1,4 +1,4 @@
-import apBacImage from '../../../assets/images/chienthangapbac.jpg'
+﻿import apBacImage from '../../../assets/images/chienthangapbac.jpg'
 import congressIIIImage from '../../../assets/images/daihoidanglan3.jpg'
 import dongKhoiImage from '../../../assets/images/dongkhoibentre.jpg'
 import genevaImage from '../../../assets/images/hiepdinggionevo.jpg'
@@ -225,3 +225,4 @@ export const eventDetails = [
     relatedEventSlugs: ['ap-bac-1963', 'party-congress-iii'],
   },
 ]
+

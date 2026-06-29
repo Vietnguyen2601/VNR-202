@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SpeakerScriptBox from './SpeakerScriptBox'
 
@@ -13,7 +13,7 @@ export function ProgressBar() {
     addEventListener('scroll', update, { passive: true })
     return () => removeEventListener('scroll', update)
   }, [])
-  return <div className="llct-progress" style={{ width: `${progress}%` }} aria-hidden="true" />
+  return <div className="vnr202-progress" style={{ width: `${progress}%` }} aria-hidden="true" />
 }
 
 const navItems = [['hero', 'Mở đầu'], ['context', 'Bối cảnh'], ['key-events', 'Sự kiện'], ['evidence', 'Tư liệu'], ['france', 'Chống Pháp'], ['1954-1960', '1954–60'], ['congress', 'Đại hội III'], ['1961-1965', '1961–65'], ['logic', 'Phân tích'], ['lo', 'LO'], ['review-game', 'Ôn tập'], ['modern', 'Liên hệ'], ['ai', 'AI Usage'], ['references', 'Nguồn']]
@@ -25,7 +25,7 @@ export function StickyNav() {
     navItems.forEach(([id]) => { const node = document.getElementById(id); if (node) observer.observe(node) })
     return () => observer.disconnect()
   }, [])
-  return <nav className="llct-nav" aria-label="Điều hướng bài thuyết trình"><a className="llct-brand" href="#hero"><span>02</span> LLCT</a><div className="llct-nav-scroll">{navItems.map(([id, label]) => <a key={id} className={active === id ? 'active' : ''} href={`#${id}`}>{label}</a>)}</div></nav>
+  return <nav className="vnr202-nav" aria-label="Điều hướng bài thuyết trình"><a className="vnr202-brand" href="#hero"><span>02</span> VNR-202</a><div className="vnr202-nav-scroll">{navItems.map(([id, label]) => <a key={id} className={active === id ? 'active' : ''} href={`#${id}`}>{label}</a>)}</div></nav>
 }
 
 export function SectionTitle({ index, eyebrow, title, subtitle }) {
@@ -66,7 +66,7 @@ export function KeyEventsSection({ events }) {
 }
 
 export function EvidenceGallerySection({ assets }) {
-  return <div className="evidence-gallery">{assets.map(asset => <Link className="visual-card reveal" key={asset.id} to={`/llct-chapter-2/events/${asset.slug}`}>
+  return <div className="evidence-gallery">{assets.map(asset => <Link className="visual-card reveal" key={asset.id} to={`/vnr-202/events/${asset.slug}`}>
     <div className="visual-placeholder" aria-label={`Vị trí ảnh tư liệu: ${asset.title}`}><span>{asset.year}</span><b>{asset.title}</b></div>
     <div className="visual-card-body">
       <p>{asset.caption}</p>
@@ -89,3 +89,4 @@ export function CauseEffectFlow({ items }) {
     <div><b>Kết quả lịch sử</b><p>{item.result}</p></div>
   </article>)}</div>
 }
+

@@ -1,4 +1,4 @@
-export default function SpeakerScriptBox({ analysisFocus, keyMessage, opening, transition }) {
+﻿export default function SpeakerScriptBox({ analysisFocus, keyMessage, opening, transition }) {
   return <aside className="key-event-speaker-panel">
     <p>{opening}</p>
     <p>{keyMessage}</p>
@@ -6,3 +6,4 @@ export default function SpeakerScriptBox({ analysisFocus, keyMessage, opening, t
     <p>{transition}</p>
   </aside>
 }
+

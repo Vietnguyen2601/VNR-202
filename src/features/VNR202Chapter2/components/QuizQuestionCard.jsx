@@ -1,4 +1,4 @@
-export default function QuizQuestionCard({
+﻿export default function QuizQuestionCard({
   completedCount,
   currentNumber,
   elapsedTime,
@@ -51,3 +51,4 @@ export default function QuizQuestionCard({
     </div>
   </article>
 }
+

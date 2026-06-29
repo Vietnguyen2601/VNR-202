@@ -1,4 +1,4 @@
-export default function GameResultScreen({ accuracy, elapsedTime, onRestart, totalQuestions, wrongAttempts }) {
+﻿export default function GameResultScreen({ accuracy, elapsedTime, onRestart, totalQuestions, wrongAttempts }) {
   return <article className="review-game-card review-result-card">
     <p className="review-game-label">Hoàn tất</p>
     <h3>Hoàn thành {totalQuestions}/{totalQuestions} câu!</h3>
@@ -11,3 +11,4 @@ export default function GameResultScreen({ accuracy, elapsedTime, onRestart, tot
     <button className="review-primary-button" type="button" onClick={onRestart}>Chơi lại</button>
   </article>
 }
+

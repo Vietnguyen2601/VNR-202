@@ -1,4 +1,4 @@
-export default function GameStartScreen({ onStart, totalQuestions }) {
+﻿export default function GameStartScreen({ onStart, totalQuestions }) {
   return <article className="review-game-card review-start-card">
     <div>
       <p className="review-game-label">Mini review game</p>
@@ -14,3 +14,4 @@ export default function GameStartScreen({ onStart, totalQuestions }) {
     <button className="review-primary-button" type="button" onClick={onStart}>Bắt đầu trò chơi</button>
   </article>
 }
+

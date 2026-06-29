@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+﻿import { useEffect, useRef, useState } from 'react'
 import { sendChatMessage } from '@services/api/chatApi'
 import './ChatBox.css'
 
@@ -95,41 +95,41 @@ function ChatBox() {
   }
 
   return (
-    <div className={`llct-chat ${open ? 'is-open' : ''}`}>
+    <div className={`vnr202-chat ${open ? 'is-open' : ''}`}>
       {open && (
-        <section className="llct-chat-panel" aria-label="Hỏi đáp Chương 2 LLCT">
-          <header className="llct-chat-header">
+        <section className="vnr202-chat-panel" aria-label="Hỏi đáp Chương 2 VNR-202">
+          <header className="vnr202-chat-header">
             <div>
-              <p className="llct-chat-kicker">Trợ lý LLCT · Chương 2</p>
+              <p className="vnr202-chat-kicker">Trợ lý VNR-202 · Chương 2</p>
               <h3>Hỏi đáp nội dung thuyết trình</h3>
             </div>
-            <button type="button" className="llct-chat-close" onClick={() => setOpen(false)} aria-label="Đóng chat">
+            <button type="button" className="vnr202-chat-close" onClick={() => setOpen(false)} aria-label="Đóng chat">
               ×
             </button>
           </header>
 
-          <div className="llct-chat-messages" ref={listRef}>
+          <div className="vnr202-chat-messages" ref={listRef}>
             {messages.map((msg, index) => (
-              <article key={`${msg.role}-${index}`} className={`llct-chat-bubble ${msg.role}`}>
+              <article key={`${msg.role}-${index}`} className={`vnr202-chat-bubble ${msg.role}`}>
                 <span>{msg.role === 'user' ? 'Bạn' : 'Trợ lý'}</span>
                 <p>{msg.content}</p>
               </article>
             ))}
             {loading && (
-              <article className="llct-chat-bubble assistant is-loading">
+              <article className="vnr202-chat-bubble assistant is-loading">
                 <span>Trợ lý</span>
                 <p>Đang suy nghĩ...</p>
               </article>
             )}
           </div>
 
-          {error && <p className="llct-chat-error">{error}</p>}
+          {error && <p className="vnr202-chat-error">{error}</p>}
 
           {sessionLimitReached && (
-            <p className="llct-chat-limit">Bạn đã dùng hết {MAX_SESSION_MESSAGES} lượt hỏi trong phiên này.</p>
+            <p className="vnr202-chat-limit">Bạn đã dùng hết {MAX_SESSION_MESSAGES} lượt hỏi trong phiên này.</p>
           )}
 
-          <form className="llct-chat-form" onSubmit={handleSubmit}>
+          <form className="vnr202-chat-form" onSubmit={handleSubmit}>
             <input
               ref={inputRef}
               type="text"
@@ -154,7 +154,7 @@ function ChatBox() {
 
       <button
         type="button"
-        className="llct-chat-toggle"
+        className="vnr202-chat-toggle"
         onClick={() => setOpen(prev => !prev)}
         aria-expanded={open}
         aria-label={open ? 'Thu gọn chat' : 'Mở chat hỏi đáp'}
@@ -166,3 +166,4 @@ function ChatBox() {
 }
 
 export default ChatBox
+

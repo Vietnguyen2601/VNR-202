@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
+﻿import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { eventDetails, loDescriptions } from '../data/eventDetails'
-import '../LLCTChapter2Page.css'
+import '../VNR202Chapter2Page.css'
 
 function PlaceholderImage({ event }) {
   return <div className="event-detail-image-placeholder" role="img" aria-label={event.imageAlt}>
@@ -33,7 +33,7 @@ function RelatedEvents({ slugs }) {
 
   return <EventDetailSection title="Sự kiện liên quan">
     <div className="related-events-grid">
-      {events.map(event => <Link className="related-event-card" to={`/llct-chapter-2/events/${event.slug}`} key={event.slug}>
+      {events.map(event => <Link className="related-event-card" to={`/vnr-202/events/${event.slug}`} key={event.slug}>
         <span>{event.date}</span>
         <h3>{event.title}</h3>
         <p>{event.shortSummary}</p>
@@ -43,39 +43,39 @@ function RelatedEvents({ slugs }) {
   </EventDetailSection>
 }
 
-export default function LLCTEventDetailPage() {
+export default function VNR202EventDetailPage() {
   const { eventSlug } = useParams()
   const event = eventDetails.find(item => item.slug === eventSlug)
 
   useEffect(() => {
-    document.body.classList.add('llct-body')
+    document.body.classList.add('vnr202-body')
     window.scrollTo({ top: 0, behavior: 'auto' })
     const observer = new IntersectionObserver(entries => entries.forEach(entry => entry.target.classList.toggle('is-visible', entry.isIntersecting)), { threshold: 0.12 })
     document.querySelectorAll('.reveal').forEach(node => observer.observe(node))
     return () => {
       observer.disconnect()
-      document.body.classList.remove('llct-body')
+      document.body.classList.remove('vnr202-body')
     }
   }, [eventSlug])
 
   useEffect(() => {
-    document.title = event ? `${event.title} | LLCT Chapter 2` : 'Không tìm thấy sự kiện | LLCT Chapter 2'
+    document.title = event ? `${event.title} | VNR-202 Chapter 2` : 'Không tìm thấy sự kiện | VNR-202 Chapter 2'
   }, [event])
 
   if (!event) {
     return <main className="event-detail-page event-not-found">
-      <Link className="event-back-link" to="/llct-chapter-2#evidence">← Quay lại bài thuyết trình</Link>
+      <Link className="event-back-link" to="/vnr-202#evidence">← Quay lại bài thuyết trình</Link>
       <section className="event-detail-section reveal is-visible">
         <p className="event-detail-kicker">Không tìm thấy</p>
         <h1>Không tìm thấy sự kiện</h1>
         <p>Đường dẫn này không khớp với sự kiện/tư liệu nào trong bài thuyết trình.</p>
-        <Link className="primary-button" to="/llct-chapter-2#evidence">Về phần tư liệu</Link>
+        <Link className="primary-button" to="/vnr-202#evidence">Về phần tư liệu</Link>
       </section>
     </main>
   }
 
   return <main className="event-detail-page">
-    <Link className="event-back-link" to="/llct-chapter-2#evidence">← Quay lại bài thuyết trình</Link>
+    <Link className="event-back-link" to="/vnr-202#evidence">← Quay lại bài thuyết trình</Link>
 
     <section className="event-detail-hero">
       <div className="event-detail-hero-copy reveal">
@@ -145,3 +145,4 @@ export default function LLCTEventDetailPage() {
     <RelatedEvents slugs={event.relatedEventSlugs} />
   </main>
 }
+

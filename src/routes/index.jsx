@@ -1,8 +1,8 @@
-import { Routes, Route } from 'react-router-dom'
+﻿import { Routes, Route } from 'react-router-dom'
 import About from '@pages/About/About'
 import NotFound from '@pages/NotFound/NotFound'
-import LLCTChapter2Page from '@/features/LLCTChapter2'
-import LLCTEventDetailPage from '@/features/LLCTChapter2/pages/LLCTEventDetailPage'
+import VNR202Chapter2Page from '@/features/VNR202Chapter2'
+import VNR202EventDetailPage from '@/features/VNR202Chapter2/pages/VNR202EventDetailPage'
 
 /**
  * Khai bao toan bo route cua ung dung tai day.
@@ -12,9 +12,9 @@ import LLCTEventDetailPage from '@/features/LLCTChapter2/pages/LLCTEventDetailPa
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<LLCTChapter2Page />} />
-      <Route path="/llct-chapter-2" element={<LLCTChapter2Page />} />
-      <Route path="/llct-chapter-2/events/:eventSlug" element={<LLCTEventDetailPage />} />
+      <Route path="/" element={<VNR202Chapter2Page />} />
+      <Route path="/vnr-202" element={<VNR202Chapter2Page />} />
+      <Route path="/vnr-202/events/:eventSlug" element={<VNR202EventDetailPage />} />
       <Route path="/about" element={<About />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
@@ -22,3 +22,4 @@ function AppRoutes() {
 }
 
 export default AppRoutes
+
