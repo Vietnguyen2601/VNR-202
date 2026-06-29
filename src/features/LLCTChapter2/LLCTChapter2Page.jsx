@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
-import { aiTools, antiFrench, causeEffectFlow, evidenceQuotes, keyEvents, logic, modern, notes, outcomes, periods, references, timeline, visualAssets } from './data/content'
-import { AudiencePrompt, CauseEffectFlow, EvidenceGallerySection, KeyEventsSection, PeriodCard, ProgressBar, QuoteEvidence, SectionTitle, SpeakerNotes, StickyNav } from './components/PresentationComponents'
+import { aiTools, antiFrench, causeEffectFlow, evidenceQuotes, keyEvents, logic, modern, outcomes, periods, references, timeline, visualAssets } from './data/content'
+import { AudiencePrompt, CauseEffectFlow, EvidenceGallerySection, KeyEventsSection, PeriodCard, ProgressBar, QuoteEvidence, SectionTitle, StickyNav } from './components/PresentationComponents'
 import ChatBox from './components/ChatBox'
+import ReviewGameSection from './components/ReviewGameSection'
 import './LLCTChapter2Page.css'
 
 const Arrow = () => <span className="flow-arrow" aria-hidden="true">→</span>
@@ -10,7 +11,11 @@ export default function LLCTChapter2Page() {
   useEffect(() => {
     document.title = 'LLCT Chapter 2 Presentation'
     document.body.classList.add('llct-body')
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => entry.target.classList.toggle('is-visible', entry.isIntersecting)), { threshold: 0.12 })
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible')
+      }
+    }), { rootMargin: '0px 0px -8% 0px', threshold: 0.01 })
     document.querySelectorAll('.reveal').forEach(node => observer.observe(node))
     return () => { observer.disconnect(); document.body.classList.remove('llct-body') }
   }, [])
@@ -27,7 +32,6 @@ export default function LLCTChapter2Page() {
         <div className="hero-actions"><a className="primary-button" href="#context">Bắt đầu trình bày <Arrow /></a><a className="text-button" href="#lo">Xem LO Mapping</a><a className="text-button" href="#ai">AI Usage</a></div>
       </div>
       <div className="hero-axis reveal" aria-label="Hai miền cùng hướng tới một mục tiêu"><div><span>MIỀN BẮC</span><strong>Hậu phương</strong></div><div className="axis-line"><i /><b>THỐNG NHẤT</b><i /></div><div><span>MIỀN NAM</span><strong>Tiền tuyến</strong></div></div>
-      <SpeakerNotes notes={notes.opening} />
     </section>
 
     <section id="context" className="llct-section timeline-section">
@@ -42,10 +46,9 @@ export default function LLCTChapter2Page() {
     </section>
 
     <section id="evidence" className="llct-section evidence-section">
-      <SectionTitle index="03" eyebrow="Tư liệu trực quan · Visual Evidence" title="Nhìn thấy lịch sử trước khi phân tích lịch sử" subtitle="Các ô dưới đây là placeholder có định hướng nguồn. Khi nhóm có ảnh chính thống, chỉ cần thay vào đúng thẻ tư liệu tương ứng." />
+      <SectionTitle index="03" eyebrow="Tư liệu trực quan · Visual Evidence" title="Nhìn thấy lịch sử trước khi phân tích lịch sử" subtitle="Mỗi tư liệu giúp người nghe ghi nhớ một mốc lịch sử và vai trò của mốc đó trong toàn bộ đường lối cách mạng." />
       <EvidenceGallerySection assets={visualAssets} />
       <div className="quote-grid">{evidenceQuotes.map(evidence => <QuoteEvidence evidence={evidence} key={evidence.label} />)}</div>
-      <p className="source-warning reveal">Lưu ý: không dùng ảnh không rõ nguồn như bằng chứng cuối cùng. Hãy thay placeholder bằng ảnh từ bảo tàng, TTXVN, Báo Quân đội nhân dân, Cổng thông tin Đảng hoặc tài liệu giảng viên cung cấp.</p>
     </section>
 
     <section id="france" className="llct-section dark-panel">
@@ -58,21 +61,18 @@ export default function LLCTChapter2Page() {
       <div className="period-grid"><PeriodCard data={periods.north54} /><PeriodCard data={periods.south54} tone="south" /></div>
       <div className="transition-flow reveal"><span>Giữ gìn lực lượng</span><Arrow /><strong>Nghị quyết 15</strong><Arrow /><span>Đồng khởi · Thế tiến công</span></div>
       <AudiencePrompt>Điều gì khiến cách mạng miền Nam phải chuyển từ giữ gìn lực lượng sang thế tiến công?</AudiencePrompt>
-      <div className="notes-grid"><SpeakerNotes notes={notes.north54} /><SpeakerNotes notes={notes.south54} /></div>
     </section>
 
     <section id="congress" className="llct-section congress-section">
       <SectionTitle index="06" eyebrow="Đại hội III · 9/1960" title="Một đất nước · Hai chiến lược · Một mục tiêu" />
       <div className="strategy-map reveal"><article><span>MIỀN BẮC</span><h3>Cách mạng xã hội chủ nghĩa</h3><strong>Quyết định nhất</strong><p>Xây dựng căn cứ địa và tiềm lực chính trị, kinh tế, quốc phòng.</p></article><div className="strategy-center"><small>CÙNG HƯỚNG TỚI</small><b>HÒA BÌNH<br />THỐNG NHẤT</b></div><article><span>MIỀN NAM</span><h3>Cách mạng dân tộc dân chủ nhân dân</h3><strong>Quyết định trực tiếp</strong><p>Trực tiếp đấu tranh chống Mỹ và chính quyền Sài Gòn.</p></article></div>
       <p className="big-thesis reveal">“Hai chiến lược khác nhau về nhiệm vụ cụ thể, thống nhất trong mục tiêu chung.”</p>
-      <SpeakerNotes notes={notes.congress} />
     </section>
 
     <section id="1961-1965" className="llct-section split-era latter-era">
       <SectionTitle index="07" eyebrow="1961–1965 · LO2 + LO3" title="Hậu phương tạo lực. Tiền tuyến tạo thế." />
       <div className="supply-line reveal"><b>MIỀN BẮC</b><span>Đường 559 · Đường 759</span><i /><strong>CHI VIỆN</strong><i /><span>Sức người · Sức của</span><b>MIỀN NAM</b></div>
       <div className="period-grid"><PeriodCard data={periods.north61} /><PeriodCard data={periods.south61} tone="south" /></div>
-      <SpeakerNotes notes={notes.south61} />
     </section>
 
     <section id="logic" className="llct-section logic-section">
@@ -86,23 +86,27 @@ export default function LLCTChapter2Page() {
       <div className="lo-grid">{outcomes.map(([code, title, text]) => <article className="lo-card reveal" key={code}><strong>{code}</strong><h3>{title}</h3><p>{text}</p><div className="lo-meter"><i /><i /><i /><i /></div></article>)}</div>
     </section>
 
+    <section id="review-game" className="llct-section review-game-section">
+      <SectionTitle index="10" eyebrow="Mini review game · 25 câu hỏi" title="Ôn tập nhanh: 25 câu hỏi vượt mốc lịch sử" subtitle="Trả lời đúng để vượt qua từng câu. Nếu trả lời sai, câu hỏi sẽ quay lại sau để bạn chọn lại." />
+      <ReviewGameSection />
+    </section>
+
     <section id="modern" className="llct-section modern-section">
-      <SectionTitle index="10" eyebrow="Liên hệ hiện nay · LO4" title="Lịch sử không ở lại phía sau" subtitle="Giá trị của bài học nằm ở nguyên tắc tư duy, không phải sao chép máy móc giải pháp của quá khứ." />
+      <SectionTitle index="11" eyebrow="Liên hệ hiện nay · LO4" title="Lịch sử không ở lại phía sau" subtitle="Giá trị của bài học nằm ở nguyên tắc tư duy, không phải sao chép máy móc giải pháp của quá khứ." />
       <div className="modern-grid">{modern.map(([title, text], i) => <article className="modern-card reveal" key={title}><span>{String(i + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
       <AudiencePrompt>Bài học “độc lập, tự chủ, sáng tạo” có ý nghĩa gì trong thời đại AI và chuyển đổi số?</AudiencePrompt>
     </section>
 
     <section id="ai" className="llct-section ai-section">
-      <SectionTitle index="11" eyebrow="AI Usage & Academic Integrity" title="AI hỗ trợ. Sinh viên chịu trách nhiệm." />
+      <SectionTitle index="12" eyebrow="AI Usage & Academic Integrity" title="AI hỗ trợ. Sinh viên chịu trách nhiệm." />
       <div className="commitment reveal"><span>CAM KẾT HỌC THUẬT</span><p>Nhóm cam kết không để AI làm thay hoàn toàn bài thuyết trình. AI chỉ hỗ trợ lên ý tưởng, tổ chức nội dung và tạo cấu trúc web. Nội dung cuối cùng được nhóm kiểm chứng, chỉnh sửa và chịu trách nhiệm.</p></div>
       <div className="ai-tools">{aiTools.map(item => <article className="ai-card reveal" key={item.tool}><header><span>CÔNG CỤ</span><h3>{item.tool}</h3></header><dl><dt>Mục đích</dt><dd>{item.purpose}</dd><dt>Prompt chính</dt><dd>{item.prompt}</dd><dt>AI tạo ra</dt><dd>{item.output}</dd><dt>Nhóm chỉnh sửa</dt><dd>{item.revision}</dd></dl></article>)}</div>
       <div className="boundaries reveal"><span>✓ AI không thay thế việc đọc giáo trình</span><span>✓ Không dùng thông tin chưa kiểm chứng</span><span>✓ Phân biệt rõ AI và phần nhóm biên soạn</span></div>
     </section>
 
     <section id="references" className="llct-section references-section">
-      <SectionTitle index="12" eyebrow="Nguồn & đối chiếu" title="Đặt độ tin cậy lên trước tốc độ" />
+      <SectionTitle index="13" eyebrow="Nguồn & đối chiếu" title="Đặt độ tin cậy lên trước tốc độ" />
       <div className="reference-list">{references.map(([title, note], i) => <article className="reference-item reveal" key={title}><span>[{String(i + 1).padStart(2, '0')}]</span><div><h3>{title}</h3><p>{note}</p></div></article>)}</div>
-      <p className="source-warning reveal">Lưu ý: danh mục này cần được nhóm bổ sung số trang giáo trình và đường dẫn văn bản chính thức đã thực tế sử dụng trước khi nộp.</p>
     </section>
 
     <section id="conclusion" className="llct-conclusion">

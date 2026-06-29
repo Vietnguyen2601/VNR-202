@@ -4,17 +4,8 @@ import './ChatBox.css'
 
 const WELCOME = {
   role: 'assistant',
-  content: 'Xin chào! Tôi có thể giải đáp thắc mắc cho bạn về nội dung Chương 2. Bạn có thể chọn câu hỏi gợi ý bên dưới hoặc tự nhập câu hỏi.',
+  content: 'Xin chào! Tôi có thể giải đáp thắc mắc cho bạn về nội dung Chương 2.',
 }
-
-const SUGGESTIONS = [
-  'Ý nghĩa lịch sử của cuộc kháng chiến chống Pháp là gì?',
-  'Đảng rút ra những kinh nghiệm gì từ kháng chiến chống Pháp?',
-  'Vì sao sau Hiệp định Giơnevơ phải có đường lối riêng cho hai miền?',
-  'Nghị quyết 15 có vai trò gì với cách mạng miền Nam?',
-  'Đại hội III xác định như thế nào về hai chiến lược cách mạng?',
-  'Miền Bắc đã chi viện cho miền Nam như thế nào giai đoạn 1961–1965?',
-]
 
 const MAX_SESSION_MESSAGES = 15
 const COOLDOWN_MS = 4000
@@ -30,7 +21,6 @@ function ChatBox() {
   const inputRef = useRef(null)
   const lastSubmitAtRef = useRef(0)
   const userMessageCount = messages.filter(msg => msg.role === 'user').length
-  const hasUserMessage = userMessageCount > 0
   const sessionLimitReached = userMessageCount >= MAX_SESSION_MESSAGES
   const isBlocked = loading || cooldownSec > 0 || sessionLimitReached
 
@@ -134,17 +124,6 @@ function ChatBox() {
           </div>
 
           {error && <p className="llct-chat-error">{error}</p>}
-
-          {!hasUserMessage && (
-            <div className="llct-chat-suggestions">
-              <p className="llct-chat-suggestions-label">Gợi ý câu hỏi</p>
-              {SUGGESTIONS.map(suggestion => (
-                <button key={suggestion} type="button" onClick={() => submit(suggestion)} disabled={isBlocked}>
-                  {suggestion}
-                </button>
-              ))}
-            </div>
-          )}
 
           {sessionLimitReached && (
             <p className="llct-chat-limit">Bạn đã dùng hết {MAX_SESSION_MESSAGES} lượt hỏi trong phiên này.</p>

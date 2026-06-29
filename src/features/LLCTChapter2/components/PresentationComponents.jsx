@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import SpeakerScriptBox from './SpeakerScriptBox'
 
 export function ProgressBar() {
   const [progress, setProgress] = useState(0)
@@ -14,7 +16,7 @@ export function ProgressBar() {
   return <div className="llct-progress" style={{ width: `${progress}%` }} aria-hidden="true" />
 }
 
-const navItems = [['hero', 'Mở đầu'], ['context', 'Bối cảnh'], ['key-events', 'Sự kiện'], ['evidence', 'Tư liệu'], ['france', 'Chống Pháp'], ['1954-1960', '1954–60'], ['congress', 'Đại hội III'], ['1961-1965', '1961–65'], ['logic', 'Phân tích'], ['lo', 'LO'], ['modern', 'Liên hệ'], ['ai', 'AI Usage'], ['references', 'Nguồn']]
+const navItems = [['hero', 'Mở đầu'], ['context', 'Bối cảnh'], ['key-events', 'Sự kiện'], ['evidence', 'Tư liệu'], ['france', 'Chống Pháp'], ['1954-1960', '1954–60'], ['congress', 'Đại hội III'], ['1961-1965', '1961–65'], ['logic', 'Phân tích'], ['lo', 'LO'], ['review-game', 'Ôn tập'], ['modern', 'Liên hệ'], ['ai', 'AI Usage'], ['references', 'Nguồn']]
 
 export function StickyNav() {
   const [active, setActive] = useState('hero')
@@ -28,10 +30,6 @@ export function StickyNav() {
 
 export function SectionTitle({ index, eyebrow, title, subtitle }) {
   return <header className="section-heading reveal"><span className="section-index">{index}</span><div><p className="section-eyebrow">{eyebrow}</p><h2>{title}</h2>{subtitle && <p className="section-subtitle">{subtitle}</p>}</div></header>
-}
-
-export function SpeakerNotes({ notes }) {
-  return <details className="speaker-notes reveal"><summary><span>Gợi ý lời thuyết trình</span><span className="plus">+</span></summary><ul>{notes.map(note => <li key={note}>{note}</li>)}</ul></details>
 }
 
 export function AudiencePrompt({ children }) {
@@ -52,24 +50,29 @@ export function KeyEventsSection({ events }) {
       <div className="event-date">{event.date}</div>
       <div className="event-body">
         {event.image && <img className="event-image" src={event.image} alt={event.imageAlt || event.title} />}
-        <div className="event-meta"><span>{event.region}</span><span>{event.type}</span>{event.lo.map(lo => <span key={lo}>{lo}</span>)}</div>
-        <h3>{event.title}</h3>
-        <p>{event.description}</p>
-        <blockquote>{event.evidence}</blockquote>
-        <small>Phân tích: {event.analysis}</small>
+        <div className="key-event-detail-body">
+          <div className="key-event-main-content">
+            <div className="event-meta"><span>{event.region}</span><span>{event.type}</span>{event.lo.map(lo => <span key={lo}>{lo}</span>)}</div>
+            <h3>{event.title}</h3>
+            <p>{event.description}</p>
+            <blockquote>{event.evidence}</blockquote>
+            <small>Phân tích: {event.analysis}</small>
+          </div>
+          {event.speakerScript && <SpeakerScriptBox {...event.speakerScript} />}
+        </div>
       </div>
     </article>)}</div>
   </div>
 }
 
 export function EvidenceGallerySection({ assets }) {
-  return <div className="evidence-gallery">{assets.map(asset => <article className="visual-card reveal" key={asset.id}>
+  return <div className="evidence-gallery">{assets.map(asset => <Link className="visual-card reveal" key={asset.id} to={`/llct-chapter-2/events/${asset.slug}`}>
     <div className="visual-placeholder" aria-label={`Vị trí ảnh tư liệu: ${asset.title}`}><span>{asset.year}</span><b>{asset.title}</b></div>
     <div className="visual-card-body">
       <p>{asset.caption}</p>
-      <dl><dt>Vì sao quan trọng</dt><dd>{asset.why}</dd><dt>Nguồn nên dùng</dt><dd>{asset.source}</dd></dl>
+      <strong>Xem chi tiết →</strong>
     </div>
-  </article>)}</div>
+  </Link>)}</div>
 }
 
 export function QuoteEvidence({ evidence }) {

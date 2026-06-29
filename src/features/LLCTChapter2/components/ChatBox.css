@@ -146,46 +146,6 @@
   font-size: 0.78rem;
 }
 
-.llct-chat-suggestions {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 0 14px 10px;
-}
-
-.llct-chat-suggestions-label {
-  margin: 0;
-  color: #928b82;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.llct-chat-suggestions button {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid rgba(232, 187, 79, 0.25);
-  border-radius: 10px;
-  background: rgba(232, 187, 79, 0.08);
-  color: #e8bb4f;
-  font-size: 0.78rem;
-  line-height: 1.4;
-  text-align: left;
-  cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.llct-chat-suggestions button:hover:not(:disabled) {
-  background: rgba(232, 187, 79, 0.14);
-  border-color: rgba(232, 187, 79, 0.4);
-}
-
-.llct-chat-suggestions button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 .llct-chat-form {
   display: grid;
   grid-template-columns: 1fr auto;
